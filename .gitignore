@@ -1,0 +1,6 @@
+.podman
+node_modules/
+notes/
+dist/
+.env
+
