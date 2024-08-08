@@ -6,7 +6,8 @@
     "start": "bun --watch index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "preact": "^10.23.1"
   },
   "peerDependencies": {
     "typescript": "5.5.4"
@@ -19,4 +20,3 @@
     "printWidth": 100
   }
 }
-

@@ -1,4 +1,4 @@
-import { type JSX as PJSX } from "preact";
+import { type JSX as PJSX } from 'preact';
 
 // Bun / other transpilers expect these to be defined if jsx mode is
 // react-jsx and jsxImportSource is used.
@@ -31,26 +31,26 @@ export type JSXResult = {
 // These are self-closing tags such as <img /> <br />, and need special
 // treatment so that we avoid generating something invalid like <img></img>.
 const voidElementNames = new Set([
-  "area",
-  "base",
-  "br",
-  "col",
-  "embed",
-  "hr",
-  "img",
-  "input",
-  "link",
-  "meta",
-  "source",
-  "track",
-  "wbr",
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'source',
+  'track',
+  'wbr',
 ]);
 
 // Determine if arg is a potentially dangerous href value.
 function isPotentiallyDangerousURL(arg: string) {
   return (
     // If the href contains a : (58 is the unicode value for :)
-    (arg.includes(":") || arg.includes("&#58;")) &&
+    (arg.includes(':') || arg.includes('&#58;')) &&
     // And it doesn't start with http:// or https://
     !fullyQualifiedURLRegex.test(arg)
   );
@@ -66,9 +66,9 @@ export function isJSXResult(o: any): o is JSXResult {
 // JSX values, etc.
 function stringifyChild(child: any): string {
   if (Array.isArray(child)) {
-    return child.map(stringifyChild).join("");
+    return child.map(stringifyChild).join('');
   }
-  if (typeof child === "string") {
+  if (typeof child === 'string') {
     return Bun.escapeHTML(child);
   }
   if (isJSXResult(child)) {
@@ -77,14 +77,14 @@ function stringifyChild(child: any): string {
   if (child != null && child !== false) {
     return Bun.escapeHTML(`${child}`);
   }
-  return "";
+  return '';
 }
 
 // Convert an object to HTML attributes. We'll handle functions specially
 // so that we can write simple event handlers on the server, and have the
 // code execute on the client.
 function stringifyAttrs(attrs: Record<string, any>) {
-  let result = "";
+  let result = '';
   for (const k in attrs) {
     let value = attrs[k];
 
@@ -93,7 +93,7 @@ function stringifyAttrs(attrs: Record<string, any>) {
     //
     // <input checked={true} />  -> <input checked />
     // <input checked={false} /> -> <input />
-    if (typeof value === "boolean") {
+    if (typeof value === 'boolean') {
       value && (result += ` ${k}`);
       continue;
     }
@@ -105,7 +105,7 @@ function stringifyAttrs(attrs: Record<string, any>) {
     // And convert it to this:
     //
     //   onClick="((e) => { document.title = e.target.textContent; })(event)"
-    if (typeof value === "function" && k.startsWith("on")) {
+    if (typeof value === 'function' && k.startsWith('on')) {
       value = `(${value})(event)`;
     }
     // It can be handy to embed view HTML as an attribute (e.g. so that client
@@ -118,14 +118,10 @@ function stringifyAttrs(attrs: Record<string, any>) {
     }
     // We want to disallow dangerous href values like javascript:alert("hi").
     // Programmers can get around this by using a JSXResult as an href.
-    if (
-      typeof value === "string" &&
-      k === "href" &&
-      isPotentiallyDangerousURL(value)
-    ) {
+    if (typeof value === 'string' && k === 'href' && isPotentiallyDangerousURL(value)) {
       // We have a potentially dangerous href value, so we'll
       // make it blank.
-      value = "";
+      value = '';
     }
     result += ` ${k}="${Bun.escapeHTML(value)}"`;
   }
@@ -137,7 +133,7 @@ function stringifyAttrs(attrs: Record<string, any>) {
 export function Fragment(...args: Array<{ children: any[] }>) {
   return {
     $jsx,
-    value: args.flatMap((arg) => stringifyChild(arg.children)).join(""),
+    value: args.flatMap((arg) => stringifyChild(arg.children)).join(''),
   };
 }
 
@@ -146,16 +142,13 @@ export function Fragment(...args: Array<{ children: any[] }>) {
 // component such as:
 //
 // const Hello(props) => <h1>Hello {props.name}</h1>
-export function h(
-  tagOrFn: string | ((props: any) => any),
-  props: any,
-): JSXResult {
+export function h(tagOrFn: string | ((props: any) => any), props: any): JSXResult {
   // We have a function component
-  if (typeof tagOrFn === "function") {
+  if (typeof tagOrFn === 'function') {
     const result = tagOrFn(props);
     // If a functioni component returns anything other than a JSXResult,
     // we don't want its output to show up in our final result.
-    return isJSXResult(result) ? result : { $jsx, value: "" };
+    return isJSXResult(result) ? result : { $jsx, value: '' };
   }
 
   // We're dealing with a tagName like "h1", etc
