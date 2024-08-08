@@ -1,4 +1,4 @@
-import { type JSX as PJSX } from 'preact';
+import type { JSX as PJSX } from 'preact';
 
 // Bun / other transpilers expect these to be defined if jsx mode is
 // react-jsx and jsxImportSource is used.
