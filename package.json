@@ -1,0 +1,22 @@
+{
+  "name": "atomic-css",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun --watch index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "5.5.4"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 100
+  }
+}
+
