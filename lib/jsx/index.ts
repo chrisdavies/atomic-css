@@ -1,4 +1,14 @@
-import type { JSX as PJSX } from 'preact';
+import type { JSXInternal } from './jsx';
+
+export type * from './jsx';
+
+// Give our JSX implementation proper type hints
+export namespace JSX {
+  export interface IntrinsicElements extends JSXInternal.IntrinsicElements {}
+
+  export interface HTMLAttributes<RefType extends EventTarget = EventTarget>
+    extends JSXInternal.HTMLAttributes<RefType> {}
+}
 
 // Bun / other transpilers expect these to be defined if jsx mode is
 // react-jsx and jsxImportSource is used.
@@ -7,14 +17,6 @@ export const jsx = h;
 
 // Match strings starting with http:// or https://
 const fullyQualifiedURLRegex = /^https?:\/\//;
-
-// Give our JSX implementation proper type hints
-export namespace JSX {
-  export interface IntrinsicElements extends PJSX.IntrinsicElements {}
-
-  export interface HTMLAttributes<RefType extends EventTarget = EventTarget>
-    extends PJSX.HTMLAttributes<RefType> {}
-}
 
 // We'll use this to identify when a child is the result of a nested JSX
 // expression. In that case, we don't want to escape the resulting HTML.

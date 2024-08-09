@@ -1,4 +1,8 @@
+import { route, type PageProps } from 'app';
 import type { ErrorLike, Server } from 'bun';
+import { html } from 'lib/jsx/html';
+import { isJSXResult } from 'lib/jsx/jsx-runtime';
+import './pages';
 
 /**
  * The Bun Serve.fetch handler singnature
@@ -9,6 +13,8 @@ export type HTTPHandler = (request: Request, server: Server) => Response | Promi
  * The type signature of a middleware function
  */
 export type Middleware = (next: HTTPHandler) => HTTPHandler;
+
+const routeRequest = route.build();
 
 /**
  * Convert milliseconds to [_ms] or [_ns].
@@ -47,9 +53,14 @@ const requestLogMiddleware: Middleware = (next) => async (req, server) => {
 /**
  * The core HTTP handler which runs after all middleware.
  */
-const handler = requestLogMiddleware((req) => {
+const handler = requestLogMiddleware(async (req) => {
   const url = parseUrl(req.url);
-  return new Response(`Domain: ${url.domain}, Path: ${url.pathname}`);
+  const pattern = `${req.method.toLowerCase()}${url.pathname}`;
+  const match = routeRequest(pattern);
+  const pageProps = req as unknown as PageProps;
+  pageProps.params = match.params;
+  const result = await match.handler(pageProps);
+  return isJSXResult(result) ? html(result) : result;
 });
 
 /**
