@@ -5,9 +5,12 @@ import { isJSXResult } from 'lib/jsx/jsx-runtime';
 import './pages';
 import { makeLiveReloadMiddleware } from 'lib/live-reload-middleware';
 import { requestElapsedLoggerMiddleware } from 'lib/request-log-middleware';
+import { makeStaticAssetHandler } from 'lib/static-assets';
+
+route.add('get/css/*path', makeStaticAssetHandler('css'));
 
 const routeRequest = route.build();
-const liveReloadMiddleware = makeLiveReloadMiddleware({ watchdirs: [] });
+const liveReloadMiddleware = makeLiveReloadMiddleware({ watchdirs: ['css'] });
 
 /**
  * A simple, fast URL parser that does only what we need.
@@ -20,7 +23,7 @@ function parseUrl(url: string) {
   }
   const colon = url.lastIndexOf(':', slash);
   const domain = url.slice(protocolEnd, colon > 0 ? colon : slash);
-  const pathname = url.slice(slash + 1);
+  const pathname = url.slice(slash);
   return { domain, pathname };
 }
 
