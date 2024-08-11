@@ -19,7 +19,7 @@ import { type Config } from './config';
 /**
  * A utility rule definition.
  */
-type Rule = {
+export type Rule = {
   /**
    * We'll sort rules by specificity from low to high
    * before writing them to our final CSS.
