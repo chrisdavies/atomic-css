@@ -1,35 +1,5 @@
-:root {
-  --bg: white;
-  --text: #333;
-  --link: #0ea5e9;
-}
+@layer base;
 
-.dark {
-  --bg: #222;
-  --text: #f5f5f5;
-  --link: #0ea5e9;
-}
-
-*,
-::after,
-::before,
-::backdrop,
-::file-selector-button {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0 solid;
-}
-
-body {
-  min-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  color: var(--text);
-}
-
-a {
-  color: var(--link);
+:focus {
+  @apply outline outline-2 outline-sky-500;
 }

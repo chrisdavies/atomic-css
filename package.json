@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=development bun --watch index.ts"
+    "start": "bun scripts/start-dev.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

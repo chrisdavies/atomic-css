@@ -29,9 +29,9 @@ export function ToggleTheme() {
     <>
       <button
         type="button"
-        class="btn-toggle-theme"
-        data-light={<IcoSun />}
-        data-dark={<IcoMoon />}
+        class="btn-toggle-theme size-8 cursor-pointer rounded-md inline-flex items-center justify-center"
+        data-light={<IcoSun strokeWidth="2" class="size-6 stroke-2" />}
+        data-dark={<IcoMoon class="size-4" />}
       ></button>
       <Script value={toggleDarkmode} />
     </>

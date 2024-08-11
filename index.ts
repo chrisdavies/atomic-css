@@ -7,10 +7,12 @@ import { makeLiveReloadMiddleware } from 'lib/live-reload-middleware';
 import { requestElapsedLoggerMiddleware } from 'lib/request-log-middleware';
 import { makeStaticAssetHandler } from 'lib/static-assets';
 
+// Serve static assets from both ./css and ./dist
 route.add('get/css/*path', makeStaticAssetHandler('css'));
+route.add('get/dist/*path', makeStaticAssetHandler('dist'));
 
 const routeRequest = route.build();
-const liveReloadMiddleware = makeLiveReloadMiddleware({ watchdirs: ['css'] });
+const liveReloadMiddleware = makeLiveReloadMiddleware({ watchdirs: ['dist'] });
 
 /**
  * A simple, fast URL parser that does only what we need.

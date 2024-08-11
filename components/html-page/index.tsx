@@ -16,8 +16,9 @@ export function HtmlPage({
       <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/css/favicon.svg" />
+        <link rel="stylesheet" href="/dist/index.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{title} | demo</title>
+        <title>{title} | Atomic CSS</title>
         {headChildren}
         <Script
           value={() => {
@@ -31,10 +32,11 @@ export function HtmlPage({
           }}
         />
       </head>
-      <body class="dark:bg-stone-900 dark:text-stone-200">
+      <body class="dark:bg-zinc-900 dark:text-zinc-200">
         <header class="flex justify-between items-center p-4 pr-2 mb-4">
-          <a href="/" class="flex items-center gap-4">
-            <img src="/css/favicon.svg" alt="Logo" class="size-6" /> Atomic CSS
+          <a href="/" class="flex items-center gap-4 text-sky-600 text-xl font-semibold">
+            <img src="/css/favicon.svg" alt="Logo" class="size-8 p-2 rounded-full bg-sky-600" />{' '}
+            Atomic CSS
           </a>
           <aside>
             <ToggleTheme />

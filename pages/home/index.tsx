@@ -5,8 +5,20 @@ route.add('get', Page);
 
 function Page() {
   return (
-    <HtmlPage title="Atomic CSS" headChildren={<link rel="stylesheet" href="css/index.css" />}>
-      <h1>Hello, world!</h1>
+    <HtmlPage title="Demo">
+      <section class="p-4 flex flex-col gap-4">
+        <h1 class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-sky-500 to-orange-500">
+          Hello, world!
+        </h1>
+        <p>This is a demo of a lightweight Tailwind-like library.</p>
+        <p>
+          Go to{' '}
+          <code class="inline-block bg-zinc-800 text-white px-1.5 rounded">
+            pages/home/index.tsx
+          </code>{' '}
+          to edit this and play around.
+        </p>
+      </section>
     </HtmlPage>
   );
 }
