@@ -1,7 +1,9 @@
 @layer base;
 
-:focus {
-  @apply outline outline-2 outline-sky-500;
+@layer base {
+  :focus {
+    @apply outline outline-2 outline-offset-2 outline-sky-500;
+  }
 }
 
 @layer utilities {
