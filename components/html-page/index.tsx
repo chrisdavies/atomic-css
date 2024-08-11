@@ -32,7 +32,7 @@ export function HtmlPage({
           }}
         />
       </head>
-      <body class="dark:bg-zinc-900 dark:text-zinc-200">
+      <body class="dark:bg-zinc-900 dark:text-zinc-200 flex flex-col min-h-screen">
         <header class="flex justify-between items-center p-4 pr-2 mb-4">
           <a href="/" class="flex items-center gap-4 text-sky-600 text-xl font-semibold">
             <img src="/css/favicon.svg" alt="Logo" class="size-8 p-2 rounded-full bg-sky-600" />{' '}

@@ -189,6 +189,8 @@ export function configToRules(config: Config) {
   addRule(rules, 'contents',            'display: contents;');
   addRule(rules, 'list-item',           'display: list-item;');
   addRule(rules, 'hidden',              'display: none;', 1);
+  addRule(rules, 'grow',                'flex-grow: 1;');
+  addRule(rules, 'grow-0',              'flex-grow: 0;', 1);
 
   addRule(rules, 'flex-row',            'flex-direction: row;');
   addRule(rules, 'flex-col',            'flex-direction: column;');
@@ -426,6 +428,14 @@ export function configToRules(config: Config) {
     addRule(rules, `max-h-${k}`,        `max-height: ${v};`,  1);
     addRule(rules, `size-${k}`,         `width: ${v}; height: ${v};`);
   }
+
+  addRule(rules, `w-screen`,            `width: 100vw;`,       1);
+  addRule(rules, `min-w-screen`,        `min-width: 100vw;`,   1);
+  addRule(rules, `max-w-screen`,        `max-width: 100vw;`,   1);
+  addRule(rules, `h-screen`,            `height: 100vh;`,      1);
+  addRule(rules, `min-h-screen`,        `min-height: 100vh;`,  1);
+  addRule(rules, `max-h-screen`,        `max-height: 100vh;`,  1);
+  addRule(rules, `size-screen`,         `width: 100vw; height: 100vh;`);
 
   for (let i = 0; i <= 100; i += 5) {
     addRule(rules, `opacity-${i}`,      `opacity: ${i / 100};`);
