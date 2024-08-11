@@ -108,7 +108,7 @@ export function stringifyCSS(opts: BaseOptions) {
 }
 
 export function writeCSS(opts: WriteOptions) {
-  const ctx = makeBuildContext(opts);
+  let ctx = makeBuildContext(opts);
 
   const writeCSS = () => {
     fs.mkdirSync(path.dirname(opts.outfile), { recursive: true });
@@ -123,7 +123,10 @@ export function writeCSS(opts: WriteOptions) {
 
   const cssWatcher = watchAll(ctx.cssBuilder.filenames, {}, function onChange(filename) {
     logChange(filename, () => {
-      ctx.cssBuilder.update();
+      // When our CSS changes, we need to do a full rebuild, as we may have had
+      // fundamental changes (utility rules may have been overwritten, modified, or
+      // removed).
+      ctx = makeBuildContext(opts);
       writeCSS();
       cssWatcher.addFiles(ctx.cssBuilder.filenames);
     });

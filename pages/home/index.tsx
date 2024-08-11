@@ -13,7 +13,7 @@ function Page() {
         <p>This is a demo of a lightweight Tailwind-like library.</p>
         <p>
           Go to{' '}
-          <code class="inline-block bg-zinc-200 dark:bg-zinc-800 dark:text-white px-1.5 rounded font-semibold">
+          <code class="inline-block bg-zinc-200 dark:bg-zinc-800 dark:text-white px-1.5 rounded font-mono text-sm">
             pages/home/index.tsx
           </code>{' '}
           to edit this and play around.
