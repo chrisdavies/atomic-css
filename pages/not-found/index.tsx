@@ -6,8 +6,8 @@ route.add('*', () =>
   html(
     <HtmlPage title="404">
       <div class="blog-post">
-        <article>
-          <h1>404 | Not Found</h1>
+        <article class="px-4 flex flex-col gap-4 max-w-2xl mx-auto">
+          <h1 class="text-4xl font-semibold">404 Not Found</h1>
           <p>
             You came here looking for my indispensable insights, unparalleled wit and wisdom, but
             all you got was this crummy 404 page. It's probably best to bury your feelings deep

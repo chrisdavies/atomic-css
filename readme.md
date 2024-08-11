@@ -6,6 +6,12 @@ This is a small demo of what a zero-dependency Tailwind implementation might loo
 
 - [Install Bun](https://bun.sh/)
 - Run `bun start`
+- Go to [http://localhost:3000]
+- Play
+
+## Play
+
+Modify `pages/home/index.tsx` to play around. The application should refresh any time you save your changes.
 
 ## Source code
 
