@@ -17,3 +17,7 @@ Modify `pages/home/index.tsx` to play around. The application should refresh any
 
 See [lib/atomic-css](lib/atomic-css) for the Tailwind-like part of the project. The rest of the project is just a really dumb demo application.
 
+## Why the heck did I build this?
+
+Good question. I wrote a [little blog post](https://christophilus.com/blog/bun-diy-tailwind-like-css-processing) about that.
+
